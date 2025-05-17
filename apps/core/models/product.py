@@ -7,7 +7,7 @@ from apps.core.models.catalog import Subcategory
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    # image = models.ImageField()
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
     price = models.FloatField()
     amount = models.IntegerField(default=1)
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True)
