@@ -12,4 +12,5 @@ urlpatterns = [
     path('about/core/', about_core, name='core-about'),
 
     path('products/', products, name='products'),
+    path('products/<int:pk>/', ProductsDetails.as_view(), name='product-details'),
 ]
