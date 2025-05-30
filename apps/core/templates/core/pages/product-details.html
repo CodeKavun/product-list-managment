@@ -1,13 +1,18 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ product.name }}{% endblock  %}
 
 {% block content %}
 
 <div class="container">
-    <form action="{% url 'product-details' product.id %}" method="post">
+    <form action="{% url 'core:product-details' product.id %}" method="post">
         {{ product_form }}
     </form>
 </div>
 
 {% endblock  %}
+
+{% block scripts %}
+<script src="{% static 'core/js/product-details.js' %}"></script>
+{% endblock %}
