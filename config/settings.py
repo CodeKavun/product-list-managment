@@ -54,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'apps.core.middleware.login_required.LoginRequiredMiddleware',
+    'apps.core.middleware.login_required.RoleAccessMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -134,6 +137,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-from apps import users
-
 LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/products/'
+LOGOUT_REDIRECT_URL = '/welcome/'

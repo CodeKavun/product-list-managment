@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit group for {{ user.username }}{% endblock  %}
+
+{% block content %}
+
+<div class="container">
+    <form action="{% url 'users:change-group' user.id %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <select name="group" class="form-control">
+                {% for group in groups %}
+                <option value="{{ group.id }}">{{ group }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Change</button>
+        <a href="{% url 'users:user-list' %}" class="btn btn-outline-primary me-2">Back</a>
+    </form>
+</div>
+
+{% endblock  %}

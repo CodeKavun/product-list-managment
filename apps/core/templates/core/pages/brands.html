@@ -5,11 +5,11 @@
 {% block content %}
 
 <div class="container">
-    <form action="{% url 'core:products' %}" method="post" enctype="multipart/form-data" class="form-flex">
+    <form action="{% url 'core:brands' %}" method="post" class="form-flex">
         {% csrf_token %}
-        {% for field in product_form %}
+        {% for field in brand_form %}
         <div class="mb-3">
-            {{ field.label }}
+            {{ field_label }}
             {{ field }}
         </div>
         {% endfor %}
@@ -21,19 +21,20 @@
     <table class="form-container">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Amount</th>
             </tr>
         </thead>
         <tbody>
-            {% for prod in products %}
+            {% for brand in brands %}
             <tr>
-                <td><a href="{% url 'core:product-details' prod.id %}">{{ prod.name }}</a></td>
-                <td>{{ prod.description }}</td>
-                <td>{{ prod.price }}</td>
-                <td>{{ prod.amount }}</td>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                {% if user_role == 'admin' %}
+                <td>
+                    <a href="{% url 'core:brand-delete' brand.id %}" class="btn btn-danger">Delete</a>
+                </td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Welcome{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<div class="center-container">
+    <a href="{% url 'users:sign-up' %}" class="start-btn">Register</a>
+    <a href="{% url 'users:login' %}" class="start-btn">Login</a>
+</div>
+{% endblock content %}

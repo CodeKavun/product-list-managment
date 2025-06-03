@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="mb-3">
+        {{ field.label }}
+        {{ field }}
+    </div>
+    {% endfor %}
+    <div>{{ form.errors }}</div>
+    <button type="submit">Sign up</button>
+</form>
+{% endblock content %}

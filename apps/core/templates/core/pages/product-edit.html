@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit {{ product.name }}{% endblock  %}
+
+{% block content %}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Change</button>
+        <a href="{% url 'core:product-details' object.id %}" class="btn btn-outline-primary me-2">Back</a>
+    </form>
+</div>
+
+{% endblock  %}

@@ -6,13 +6,39 @@
 {% block content %}
 
 <div class="container">
-    <form action="{% url 'core:product-details' product.id %}" method="post">
-        {{ product_form }}
-    </form>
+    <div class="product-root d-flex">
+        <div class="prod-image">
+            {% if object.image %}
+            <img src="{{ object.image.url }}" alt="{{ object.name }}">
+            {% endif %}
+        </div>
+        <div class="prod-main-details" style="margin-left: 20px">
+            <div class="prod-name">
+                {% if object.brand %}
+                <span>{{ object.brand.name }} </span>
+                {% endif %}
+                <span>{{ object.name }}</span>
+                <div class="prod-category">
+                    {% if object.category %}
+                    <strong>{{ object.category.name }}</strong>
+                    {% endif %}
+                </div>
+            </div>
+            <p class="prod-desc">{{ object.description }}</p>
+            <div class="prod-price">
+                Price: <strong>{{ object.price }}</strong>
+            </div>
+            <div class="prod-amount">
+                Amount: <strong>{{ object.amount }}</strong>
+            </div>
+        </div>
+    </div>
+    <div class="prod-controls">
+        {% if user_role == 'admin' %}
+        <a href="{% url 'core:product-edit' object.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'core:product-delete' object.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
+    </div>
 </div>
 
 {% endblock  %}
-
-{% block scripts %}
-<script src="{% static 'core/js/product-details.js' %}"></script>
-{% endblock %}
